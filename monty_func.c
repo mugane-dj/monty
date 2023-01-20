@@ -27,18 +27,19 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 	}
 
 	new->n = atoi(n);
-	new->prev = NULL;
 
 	if (*stack != NULL)
 	{
 		new->next = *stack;
 		(*stack)->prev = new;
+		*stack = new;
 	}
 	else
 	{
+		*stack = new;
 		new->next = NULL;
+		new->prev = NULL;
 	}
-	*stack = new;
 }
 
 /**
@@ -51,8 +52,12 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 
 void stack_pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = (*stack)->next;
+	stack_t *tmp = NULL;
 
+	if (!stack || !*stack)
+		return;
+
+	tmp = *stack;
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
@@ -71,16 +76,15 @@ void stack_pall(stack_t **stack, unsigned int line_number)
 
 void stack_pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = (*stack)->next;
+	stack_t *tmp = *stack;
 
-	if (tmp == NULL)
+	if (!stack || !*stack)
 	{
 		pint_error(line_number);
 		return;
 	}
 
 	printf("%d\n", tmp->n);
-	(void)line_number;
 }
 
 /**
