@@ -23,7 +23,7 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 	}
 
 	new->n = atoi(n);
-	if((new->n == 0 && *n != '0') || (new->n == 0 && *n == '0' && !strcmp(n, "0")))
+	if((new->n == 0 && *n != '0') || (new->n == 0 && *n == '0')
 	{
 		invalid_monty_push(line_number);
 		exit(EXIT_FAILURE);
