@@ -102,7 +102,7 @@ void stack_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = NULL;
 
-	if (!stack || !*stack)
+	if (stack == NULL || *stack == NULL)
 	{
 		pop_error(line_number);
 		free_stack(stack);
@@ -134,21 +134,26 @@ void stack_pop(stack_t **stack, unsigned int line_number)
  */
 void stack_swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top = (*stack)->next;
-	stack_t *tmp;
+	stack_t *tmp = NULL;
 
-	if (top == NULL || top->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		swap_error(line_number);
-		return;
+		exit(EXIT_FAILURE);
 	}
 
-	tmp = top->next;
-	top->next = tmp->next;
-	top->prev = tmp;
+	tmp = (*stack)->next;
 	if (tmp->next)
-		tmp->next->prev = top;
-	tmp->next = top;
-	tmp->prev = *stack;
-	top = tmp;
+	{
+		tmp->prev->prev = tmp;
+		tmp->prev->next = NULL;
+	}
+	else
+	{
+		(*stack)->next = tmp->next;
+		(*stack)->next->prev = *stack;
+	}
+	tmp->prev = NULL;
+	tmp->next = *stack;
+	(*stack) = tmp;
 }
