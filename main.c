@@ -9,6 +9,7 @@
  * execute_monty - executes the Monty intepreter.
  *
  * @buffer: A char pointer to a buffer.
+ * @stack: A pointer to a pointer to a stack of type stack_t.
  * Return; void.
  */
 
