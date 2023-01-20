@@ -11,19 +11,19 @@
 
 void stack_add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top = *stack;
 	stack_t *tmp;
 
-	if (top == NULL || top->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		add_error(line_number);
-		free(stack);
 		exit(EXIT_FAILURE);
 	}
 
-	tmp = top->next;
-	tmp->n += top->n;
-	stack_pop(stack, line_number);
+	tmp = (*stack)->next;
+	tmp->n += (*stack)->n;
+	(*stack) = tmp;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
 }
 
 /**
