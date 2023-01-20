@@ -9,7 +9,7 @@
  * Return: void.
  */
 
-void stack_push(stack_t **stack, unsigned int line_number)
+void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 {
 	stack_t *new;
 
@@ -17,16 +17,16 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	if (new == NULL)
 	{
 		malloc_failure();
-		return;
+		free_stack(&new);
 	}
 
-	if (tokens[1] == NULL)
+	if ((atoi(n) == 0 && *n != 0) || isdigit(atoi(n)) != 0)
 	{
 		invalid_monty_push(line_number);
-		return;
+		free_stack(stack);
 	}
 
-	new->n = atoi(tokens[1]);
+	new->n = atoi(n);
 	new->prev = NULL;
 
 	if (*stack != NULL)

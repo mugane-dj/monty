@@ -8,13 +8,11 @@
 
 /* Macros */
 #define DELIMS " \n\t\a\b"
-#define MAX_LINE_LENGTH 256
+#define BUFFER_SIZE 1000
 
 
-/* Global tokens variable */
-extern char **tokens;
+/* Data structures */
 
-/* Structs */
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -57,9 +55,9 @@ int swap_error(unsigned int line_number);
 int add_error(unsigned int line_number);
 
 /* Monty prototypes */
-void (*get_stack_op(char *opcode))(stack_t**, unsigned int);
-int execute_monty(FILE *byte_code);
-void stack_push(stack_t **stack, unsigned int line_number);
+void (*get_stack_op(char *opcode))(stack_t **stack, unsigned int line_number);
+void execute_monty(stack_t **stack, char *buffer);
+void stack_push(stack_t **stack, unsigned int line_number, const char *n);
 void stack_pop(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
 void stack_add(stack_t **stack, unsigned int line_number);
@@ -70,9 +68,7 @@ void stack_nop(stack_t **stack, unsigned int line_number);
 void stack_add(stack_t **stack, unsigned int line_number);
 
 /* Helper functions */
-int stack_init(stack_t **stack);
-void free_tokens(void);
 void free_stack(stack_t **stack);
-int empty_line_read(char *line, char *delims);
+int isdigit(int c);
 
 #endif /* __MONTY_H__ */
