@@ -21,10 +21,9 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 		exit(EXIT_FAILURE);
 	}
 
-	if ((atoi(n) == 0 && *n != 0) || isdigit(atoi(n)) != 0)
+	if (isdigit(atoi(n)) != 0 || (atoi(n) == 0 && *n != 0))
 	{
 		invalid_monty_push(line_number);
-		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 

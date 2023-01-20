@@ -11,7 +11,7 @@
 
 void pint_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+	fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 }
 
 /**
@@ -23,7 +23,7 @@ void pint_error(unsigned int line_number)
 
 void pop_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pop an stack empty\n", line_number);
+	fprintf(stderr, "L%u: can't pop an stack empty\n", line_number);
 }
 
 /**
@@ -34,7 +34,7 @@ void pop_error(unsigned int line_number)
 
 void swap_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pop an stack empty\n", line_number);
+	fprintf(stderr, "L%u: can't pop an stack empty\n", line_number);
 }
 
 /**
@@ -46,5 +46,5 @@ void swap_error(unsigned int line_number)
 
 void add_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+	fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 }
