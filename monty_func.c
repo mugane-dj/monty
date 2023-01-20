@@ -19,12 +19,14 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 	{
 		malloc_failure();
 		free_stack(&new);
+		exit(EXIT_FAILURE);
 	}
 
 	if ((atoi(n) == 0 && *n != 0) || isdigit(atoi(n)) != 0)
 	{
 		invalid_monty_push(line_number);
 		free_stack(stack);
+		exit(EXIT_FAILURE);
 	}
 
 	new->n = atoi(n);
@@ -82,7 +84,8 @@ void stack_pint(stack_t **stack, unsigned int line_number)
 	if (!stack || !*stack)
 	{
 		pint_error(line_number);
-		return;
+		free(stack);
+		exit(EXIT_FAILURE);
 	}
 
 	printf("%d\n", tmp->n);
@@ -99,12 +102,13 @@ void stack_pint(stack_t **stack, unsigned int line_number)
 void stack_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *next = NULL;
-	stack_t *tmp = (*stack)->next;
+	stack_t *tmp = *stack;
 
 	if (tmp == NULL)
 	{
 		pop_error(line_number);
-		return;
+		free(stack);
+		exit(EXIT_FAILURE);
 	}
 	next = tmp->next;
 	free(tmp);

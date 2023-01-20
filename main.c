@@ -46,6 +46,7 @@ void execute_monty(stack_t **stack, char *buffer)
 			{
 				free_stack(stack);
 				invalid_opcode(token, line_number);
+				exit(EXIT_FAILURE);
 			}
 		}
 		line_number++;
@@ -70,16 +71,25 @@ int main(int argc, char *argv[])
 	stack_t *stack = NULL;
 
 	if (argc != 2)
-		return (monty_usage());
+	{
+		monty_usage();
+		exit(EXIT_FAILURE);
+	}
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (file_open_error(argv[1]));
+	{
+		file_open_error(argv[1]);
+		exit(EXIT_FAILURE);
+	}
 
 	buffer = malloc(sizeof(char) * BUFFER_SIZE);
 
 	if (!buffer)
-		return (malloc_failure());
+	{
+		malloc_failure();
+		exit(EXIT_FAILURE);
+	}
 
 	n_read = read(fd, buffer, BUFFER_SIZE);
 	if (n_read == -1)

@@ -6,49 +6,45 @@
  * pint_error - custom error message for pint error
  *              due to empty stack.
  * @line_number: line number with error.
- * Return: EXIT_FAILURE always.
+ * Return: void.
  */
 
-int pint_error(unsigned int line_number)
+void pint_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pint, stack empty", line_number);
-	return (EXIT_FAILURE);
+	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 }
 
 /**
  * pop_error - custom error message for pop error
  *              due to empty stack.
  * @line_number: line number with error.
- * Return: EXIT_FAILURE always.
+ * Return: void.
  */
 
-int pop_error(unsigned int line_number)
+void pop_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pop an stack empty", line_number);
-	return (EXIT_FAILURE);
+	fprintf(stderr, "L%d: can't pop an stack empty\n", line_number);
 }
 
 /**
  * swap_error - custom error message for short stack.
  * @line_number: line number with error.
- * Return: EXIT_FAILURE always.
+ * Return: void.
  */
 
-int swap_error(unsigned int line_number)
+void swap_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pop an stack empty", line_number);
-	return (EXIT_FAILURE);
+	fprintf(stderr, "L%d: can't pop an stack empty\n", line_number);
 }
 
 /**
  * add_error - custom error message for add error
  *              due to short stack.
  * @line_number: line number with error.
- * Return: EXIT_FAILURE always.
+ * Return: void.
  */
 
-int add_error(unsigned int line_number)
+void add_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't pint, stack empty", line_number);
-	return (EXIT_FAILURE);
+	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 }
