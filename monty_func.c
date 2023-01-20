@@ -138,19 +138,13 @@ void stack_swap(stack_t **stack, unsigned int line_number)
 		swap_error(line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	tmp = (*stack)->next;
-	if (tmp->next)
-	{
-		tmp->prev->prev = tmp;
-		tmp->prev->next = NULL;
-	}
 	else
 	{
+		tmp = (*stack)->next;
+		(*stack)->prev = tmp;
 		(*stack)->next = tmp->next;
-		(*stack)->next->prev = *stack;
+		tmp->prev = NULL;
+		tmp->next = *stack;
+		*stack = tmp;
 	}
-	tmp->prev = NULL;
-	tmp->next = *stack;
-	(*stack) = tmp;
 }
