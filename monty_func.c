@@ -6,6 +6,7 @@
  *
  * @stack: A pointer to a pointer to a stack of type stack_t.
  * @line_number: Line number with opcode.
+ * @n: token.
  * Return: void.
  */
 
