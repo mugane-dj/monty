@@ -18,7 +18,6 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 	if (new == NULL)
 	{
 		malloc_failure();
-		free_stack(&new);
 		exit(EXIT_FAILURE);
 	}
 
@@ -101,20 +100,29 @@ void stack_pint(stack_t **stack, unsigned int line_number)
 
 void stack_pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *next = NULL;
-	stack_t *tmp = *stack;
+	stack_t *tmp = NULL;
 
-	if (tmp == NULL)
+	if (!stack || !*stack)
 	{
 		pop_error(line_number);
-		free(stack);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	next = tmp->next;
-	free(tmp);
-	if (next)
-		next->prev = *stack;
-	tmp = next;
+	else
+	{
+		tmp = *stack;
+		if ((*stack)->next == NULL)
+		{
+			*stack = NULL;
+			free(tmp);
+		}
+		else
+		{
+			*stack = (*stack)->next;
+			tmp->prev = NULL;
+			free(tmp);
+		}
+	}
 }
 
 /**
