@@ -1,5 +1,6 @@
 #include "monty.h"
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * stack_push - pushes a new element into the stack.
@@ -21,13 +22,12 @@ void stack_push(stack_t **stack, unsigned int line_number, const char *n)
 		exit(EXIT_FAILURE);
 	}
 
-	if (isdigit(atoi(n)) != 0 || (atoi(n) == 0 && *n != 0))
+	new->n = atoi(n);
+	if((new->n == 0 && *n != '0') || (new->n == 0 && *n == '0' && !strcmp(n, "0")))
 	{
 		invalid_monty_push(line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	new->n = atoi(n);
 
 	if (*stack != NULL)
 	{
