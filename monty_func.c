@@ -55,7 +55,7 @@ void stack_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = NULL;
 
-	if (!stack || !*stack)
+	if (stack == NULL || *stack == NULL)
 		return;
 
 	tmp = *stack;
@@ -79,10 +79,9 @@ void stack_pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 
-	if (!stack || !*stack)
+	if (stack == NULL || *stack == NULL)
 	{
 		pint_error(line_number);
-		free(stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -104,7 +103,6 @@ void stack_pop(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL)
 	{
 		pop_error(line_number);
-		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 	else
