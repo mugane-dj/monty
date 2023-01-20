@@ -44,15 +44,15 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Error message prototypes */
-int monty_usage(void);
-int file_open_error(char *file);
-int malloc_failure(void);
-int invalid_opcode(char *opcode, unsigned int line_number);
-int invalid_monty_push(unsigned int line_number);
-int pint_error(unsigned int line_number);
-int pop_error(unsigned int line_number);
-int swap_error(unsigned int line_number);
-int add_error(unsigned int line_number);
+void monty_usage(void);
+void file_open_error(char *file);
+void malloc_failure(void);
+void invalid_opcode(char *opcode, unsigned int line_number);
+void invalid_monty_push(unsigned int line_number);
+void pint_error(unsigned int line_number);
+void pop_error(unsigned int line_number);
+void swap_error(unsigned int line_number);
+void add_error(unsigned int line_number);
 
 /* Monty prototypes */
 void (*get_stack_op(char *opcode))(stack_t **stack, unsigned int line_number);
